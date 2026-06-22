@@ -22,6 +22,9 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 ## Content description
 
 `01-`:
+
 `02-data`: Contains experimental data produced in accordance with the experiment settings
+
 `03-analysis`: Contains Python analysis scripts to obtain the results in the `04-results` folder
+
 `04-results`: Contains the plots and statistical significance values that are used in the publication
