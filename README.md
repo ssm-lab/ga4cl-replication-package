@@ -9,7 +9,7 @@ To obtain the family of environments, we develop an approach and prototype tool.
 We demonstrate the soundness of our approach in a wildfire mitigation scenario and curriculum learning---a particular learning paradigm that relies on environment families.
 
 ## Table of contents
-[Content description](#Content description)
+[Content description]()
 
 [Reproduction of analysis]()
 
@@ -20,3 +20,8 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 [Results]()
 
 ## Content description
+
+`01-`:
+`02-data`: Contains experimental data produced in accordance with the experiment settings
+`03-analysis`: Contains Python analysis scripts to obtain the results in the `04-results` folder
+`04-results`: Contains the plots and statistical significance values that are used in the publication
