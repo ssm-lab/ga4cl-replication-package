@@ -34,6 +34,7 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 ## Reproduction of experimental data
 
 TODO: Istvan for Eclipse part
+Question: Table 3 about generation time?
 
 ---
 Run the script for training, also will get the data and also the figures. For evaluation, by using the training results, can generate statistics.
@@ -48,12 +49,14 @@ The target environment used in the experiments:
 ### Settings and hyperparameters
 | Parameter | Value |
 |---|---|
+|Mutation rate | 0.85 |
+|Simulated annealing| TODO |
+|Complexity measure | The number of feasible paths between the start and the goal  |
+|Diversity measure |  Shannon entropy |
+|Population size | 6 |
+|Training budget per environment | 50,000 steps |
 |RL method |  Q-learning |
 |Learning rate (α) | 0.1 |
 |Discount factor (γ) | 0.99 |
-|Complexity measure | The number of feasible paths between the start and the goal  |
-|Diversity measure |  Shannon entropy |
-| Curriculum size | 6 environments |
-| Training budget per environment | 50,000 steps |
 
 ## Results
