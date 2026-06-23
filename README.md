@@ -34,3 +34,23 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 ## Reproduction of experimental data
 
 TODO: Istvan
+
+## Experiment setup
+### Problem
+The target environment used in the experiments:
+
+<img width="400" height="400" alt="env_6-complexity_0 93" src="https://github.com/user-attachments/assets/c8e799f5-e4ac-45b4-9bab-fcd62a72fc2d"  />
+
+
+### Settings and hyperparameters
+| Parameter | Value |
+|---|---|
+|RL method |  Q-learning |
+|Learning rate (α) | 0.1 |
+|Discount factor (γ) | 0.99 |
+|Complexity measure | The number of feasible paths between the start and the goal  |
+|Diversity measure |  Shannon entropy |
+| Curriculum size | 6 environments |
+| Training budget per environment | 50,000 steps |
+
+## Results
