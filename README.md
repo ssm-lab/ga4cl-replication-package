@@ -15,7 +15,7 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 [Reproduction of experimental data]()
 
-[Experiment setup]()
+[Experiment settings]()
 
 [Results]()
 
@@ -35,7 +35,7 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 TODO: Istvan
 
-## Experiment setup
+## Experiment settings
 ### Problem
 The target environment used in the experiments:
 
