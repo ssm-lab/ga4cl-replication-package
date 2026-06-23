@@ -60,3 +60,5 @@ The target environment used in the experiments:
 |Discount factor (γ) | 0.99 |
 
 ## Results
+
+TODO: generated curricula; cumulative reward plot; statistics about the success rate and episodic return.
