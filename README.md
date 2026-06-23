@@ -28,3 +28,9 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 `03-analysis`: Contains Python analysis scripts to obtain the results in the `04-results` folder
 
 `04-results`: Contains the plots and statistical significance values that are used in the publication
+
+## Reproduction of analysis
+
+## Reproduction of experimental data
+
+TODO: Istvan
