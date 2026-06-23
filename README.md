@@ -33,7 +33,10 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 ## Reproduction of experimental data
 
-TODO: Istvan
+TODO: Istvan for Eclipse part
+
+---
+Run the script for training, also will get the data and also the figures. For evaluation, by using the training results, can generate statistics.
 
 ## Experiment settings
 ### Problem
