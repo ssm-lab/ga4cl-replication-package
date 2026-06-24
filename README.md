@@ -33,7 +33,7 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 - `learning-config.json` — Defines the RL configuration
 
 `02-train-data`: Contains trained agents' data produced by running the scripts in `03-scripts`
-- `<experiment>/start_stage_1/` … `start_stage_5/` — final Q-table checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
+- `<experiment>/start_stage_1/` … `start_stage_5/` — final checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
 - `<experiment>/baseline/<label>/` — equivalent checkpoint and eval data for each baseline agent
 
 `03-scripts`: Contains Python scripts to reproduce the training results and plots in `04-results`
