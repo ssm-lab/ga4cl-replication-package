@@ -21,21 +21,76 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 ## Content description
 
+<<<<<<< Updated upstream
 `01-data`: Contains experimental data produced in accordance with the experiment settings
 
 `02-analysis`: Contains Python analysis scripts to obtain the results in the `03-results` folder
 
 `03-results`: Contains the plots and statistical significance values that are used in the publication
+=======
+`01-configurations`: Contains the generated environment configurations
+- `environment-config.json` — Defines the training environment configuration
+- `learning-config.json` — Defines the RL configuration
+
+`02-train-data`: Contains trained agents' data produced by running the scripts in `03-scripts`
+- `<experiment>/start_stage_1/` … `start_stage_5/` — final Q-table checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
+- `<experiment>/baseline/<label>/` — equivalent checkpoint and eval data for each baseline agent
+
+`03-scripts`: Contains Python scripts to reproduce the training results and plots in `04-results`
+
+`04-results`: Contains the plots and visualizations used in the publication
+- `map_visualization/` — Visualization of each environment in the generated curriculum
+- `plots/` — Cumulative reward plots during training
+- `statistics/` — Evaluation results
+>>>>>>> Stashed changes
 
 ## Reproduction of analysis
+
+### Requirements
+
+Python 3.11 or higher is required. Install dependencies from the `03-scripts` directory:
+
+```bash
+cd 03-scripts
+pip install -r requirements.txt
+```
+
+### Step 1 — Generate map visualizations
+
+```bash
+python map_visualizer.py
+```
+
+Saves the visualization of each environment to `04-results/map_visualization/`.
+
+### Step 2 — Training
+
+```bash
+python runner.py --all-stages --baseline all
+```
+
+
+This will:
+1. Build the full curriculum (E1 → E6) ordered by environment complexity
+2. Run 5 partial curricula starting from E1, E2, E3, E4, and E5 through the target environment (E6)
+3. Run a direct-training baseline for each environment
+4. Save agent checkpoints to `02-train-data/`
+5. Save the plots to `04-results/plots/`.
+
+
+
+### Step 3 — Evaluation
+
+```bash
+python evaluator.py
+```
+
+Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv` to `04-results/statistics/`.
 
 ## Reproduction of experimental data
 
 TODO: Istvan for Eclipse part
 Question: Table 3 about generation time?
-
----
-Run the script for training, also will get the data and also the figures. For evaluation, by using the training results, can generate statistics.
 
 ## Experiment settings
 ### Problem
