@@ -86,13 +86,6 @@ TODO: generated curricula; cumulative reward plot; statistics about the success 
 <img width="480" height="300" alt="cumulative_reward_start_4-v2" src="https://github.com/user-attachments/assets/54f26b65-1fd6-42b0-ae4c-5720a42cb302" />
 <img width="480" height="300" alt="cumulative_reward_start_5-v2" src="https://github.com/user-attachments/assets/6cbebade-6653-4b68-b946-18d1c3e4db6e" />
 
-### Evaluation results on the target environment
-| Agent | Success rate (%) | Mean episode return
-|---|---|---|
-
-
-
-
 
 
 
