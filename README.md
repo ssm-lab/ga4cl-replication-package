@@ -62,3 +62,15 @@ The target environment used in the experiments:
 ## Results
 
 TODO: generated curricula; cumulative reward plot; statistics about the success rate and episodic return.
+
+### Generated curricula
+(1) <img width="300" height="300" alt="env_1-complexity_0 00" src="https://github.com/user-attachments/assets/47e18294-bcce-42b4-8a41-05a2f5740a80" />
+(2) <img width="300" height="300" alt="env_2-complexity_0 20" src="https://github.com/user-attachments/assets/bc68702d-4386-45c9-a30b-4aeaf7ff1c87" />
+(3) <img width="300" height="300" alt="env_3-complexity_0 48" src="https://github.com/user-attachments/assets/0765aaf0-4fa1-44d8-ac6a-4574707a7647" />
+
+(4) <img width="300" height="300" alt="env_4-complexity_0 59" src="https://github.com/user-attachments/assets/44b7c98f-2130-4289-985e-424ee1aaf12e" />
+(5) <img width="300" height="300" alt="env_5-complexity_0 67" src="https://github.com/user-attachments/assets/4956659b-433b-4131-bfe0-deda8f8deeb0" />
+(6) <img width="300" height="300" alt="env_6-complexity_0 93" src="https://github.com/user-attachments/assets/8764b390-df4e-439f-b10e-38a91543bd1f" />
+
+
+
