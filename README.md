@@ -72,5 +72,22 @@ TODO: generated curricula; cumulative reward plot; statistics about the success 
 (5) <img width="300" height="300" alt="env_5-complexity_0 67" src="https://github.com/user-attachments/assets/4956659b-433b-4131-bfe0-deda8f8deeb0" />
 (6) <img width="300" height="300" alt="env_6-complexity_0 93" src="https://github.com/user-attachments/assets/8764b390-df4e-439f-b10e-38a91543bd1f" />
 
+### Cumulative reward during training
+
+**Cumulative reward across all curricula**
+
+<img width="480" height="300" alt="cumulative_reward_all-v2" src="https://github.com/user-attachments/assets/bff9b8e8-d6ca-4c4c-9601-abf854e6ec14" />
+
+**Cumulative reward with different prefixes**
+
+<img width="480" height="300" alt="cumulative_reward_start_1-v2" src="https://github.com/user-attachments/assets/267f4708-0dea-44b4-a1ef-7cc338190a40" />
+<img width="480" height="300" alt="cumulative_reward_start_2-v2" src="https://github.com/user-attachments/assets/2d0ebbe1-3c13-4bbe-9f65-0669ea63045c" />
+<img width="480" height="300" alt="cumulative_reward_start_3-v2" src="https://github.com/user-attachments/assets/74c4a9f9-f6de-4476-95ec-77752466c5b4" />
+<img width="480" height="300" alt="cumulative_reward_start_4-v2" src="https://github.com/user-attachments/assets/54f26b65-1fd6-42b0-ae4c-5720a42cb302" />
+<img width="480" height="300" alt="cumulative_reward_start_5-v2" src="https://github.com/user-attachments/assets/6cbebade-6653-4b68-b946-18d1c3e4db6e" />
+
+
+
+
 
 
