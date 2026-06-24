@@ -41,10 +41,12 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 ### Requirements
 
-Python 3.11 or higher is required. Install dependencies from the `03-scripts` directory:
+Python 3.11 or higher is required. Set up a virtual environment from the `03-scripts` directory:
 
 ```bash
 cd 03-scripts
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
