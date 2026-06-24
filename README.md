@@ -42,7 +42,7 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 - `map_visualization/`: visualization of each environment in the generated curriculum
 - `plots/`: cumulative reward plots during training
 - `statistics/`: evaluation results
->>>>>>> Stashed changes
+
 
 ## Reproduction of analysis
 
