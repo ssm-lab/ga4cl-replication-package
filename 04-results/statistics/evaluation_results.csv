@@ -1,0 +1,12 @@
+agent_type,label,mean_reward,success_rate
+baseline,Baseline (E1),-1.0000,0.0000
+baseline,Baseline (E2),-1.0000,0.0000
+baseline,Baseline (E3),-1.0000,0.0000
+baseline,Baseline (E4),-1.0000,0.0000
+baseline,Baseline (E5),-1.0000,0.0000
+baseline,Baseline (E6),0.0000,0.0000
+curriculum,Curriculum (E1–E6),10.2000,1.0000
+curriculum,Curriculum (E2–E6),10.2000,1.0000
+curriculum,Curriculum (E3–E6),10.2000,1.0000
+curriculum,Curriculum (E4–E6),10.2000,1.0000
+curriculum,Curriculum (E5–E6),0.0000,0.0000
