@@ -50,7 +50,6 @@ The target environment used in the experiments:
 | Parameter | Value |
 |---|---|
 |Mutation rate | 0.85 |
-|Simulated annealing| TODO |
 |Complexity measure | The number of feasible paths between the start and the goal  |
 |Diversity measure |  Shannon entropy |
 |Population size | 6 |
