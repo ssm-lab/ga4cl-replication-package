@@ -29,19 +29,19 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 `03-results`: Contains the plots and statistical significance values that are used in the publication
 =======
 `01-configurations`: Contains the generated environment configurations
-- `environment-config.json` — Defines the training environment configuration
-- `learning-config.json` — Defines the RL configuration
+- `environment-config.json`: the training environment configuration
+- `learning-config.json`: the RL configuration
 
 `02-train-data`: Contains trained agents' data produced by running the scripts in `03-scripts`
-- `<experiment>/start_stage_1/` … `start_stage_5/` — final checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
-- `<experiment>/baseline/<label>/` — equivalent checkpoint and eval data for each baseline agent
+- `<experiment>/start_stage_1/` … `start_stage_5/`: final checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
+- `<experiment>/baseline/<label>/`: equivalent checkpoint and eval data for each baseline agent
 
-`03-scripts`: Contains Python scripts to reproduce the training results and plots in `04-results`
+`03-scripts`: contains Python scripts to reproduce the training results and plots in `04-results`
 
-`04-results`: Contains the plots and visualizations used in the publication
-- `map_visualization/` — Visualization of each environment in the generated curriculum
-- `plots/` — Cumulative reward plots during training
-- `statistics/` — Evaluation results
+`04-results`: contains the plots and visualizations used in the publication
+- `map_visualization/`: visualization of each environment in the generated curriculum
+- `plots/`: cumulative reward plots during training
+- `statistics/`: evaluation results
 >>>>>>> Stashed changes
 
 ## Reproduction of analysis
