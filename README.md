@@ -21,11 +21,11 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 ## Content description
 
-`01-configurations`: Contains the generated environment configurations
+`01-configurations`: contains the generated environment configurations
 - `environment-config.json`: the training environment configuration
 - `learning-config.json`: the RL configuration
 
-`02-train-data`: Contains trained agents' data produced by running the scripts in `03-scripts`
+`02-train-data`: contains trained agents' data produced by running the scripts in `03-scripts`
 - `<experiment>/start_stage_1/` … `start_stage_5/`: final checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
 - `<experiment>/baseline/<label>/`: equivalent checkpoint and eval data for each baseline agent
 
