@@ -119,6 +119,8 @@ The target environment used in the experiments:
 
 ### Cumulative reward during training
 
+TODO: figure out the structure, which figures should be put here.
+
 **Cumulative reward across all curricula**
 
 <img width="480" height="300" alt="cumulative_reward_all-v2" src="https://github.com/user-attachments/assets/bff9b8e8-d6ca-4c4c-9601-abf854e6ec14" />
