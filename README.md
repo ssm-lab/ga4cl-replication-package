@@ -9,15 +9,15 @@ To obtain the family of environments, we develop an approach and prototype tool.
 We demonstrate the soundness of our approach in a wildfire mitigation scenario and curriculum learning---a particular learning paradigm that relies on environment families.
 
 ## Table of contents
-[Content description]()
+- Content description
 
-[Reproduction of analysis]()
+- Reproduction of analysis
 
-[Reproduction of experimental data]()
+- Reproduction of experimental data
 
-[Experiment settings]()
+- Experiment settings
 
-[Results]()
+- Results
 
 ## Content description
 
@@ -84,8 +84,9 @@ Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv`
 
 ## Reproduction of experimental data
 
-TODO: Istvan for Eclipse part
-Question: Table 3 about generation time?
+### Setting up Eclipse
+For the following steps, refer to the tool's https://github.com/ssm-lab/models26-code 
+
 
 ## Experiment settings
 ### Problem
