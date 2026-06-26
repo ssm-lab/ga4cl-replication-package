@@ -85,8 +85,11 @@ Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv`
 ## Reproduction of experimental data
 
 ### Setting up Eclipse
-For the following steps, refer to the tool's https://github.com/ssm-lab/models26-code 
+For the following steps, refer to the tool's [official GitHub repository](https://github.com/ssm-lab/models26-code).
 
+### Obtaining experimental data
+Data can be obtained by running experiments encoded in unit tests in the Example.
+To locate the unit tests, navigate to ``https://github.com/ssm-lab/models26-code/blob/main/tests/ca.mcmaster.ssm.mde4rl.tests/src/ca/mcmaster/ssm/mde4rl/tests/Example.xtend``.
 
 ## Experiment settings
 ### Problem
