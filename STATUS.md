@@ -20,6 +20,6 @@ We apply for the following ACM badges for the paper
 
 ## Artifact Available
 
-- Publicly available on GitHub and archived on Zenodo with a stable DOI.
+- Publicly available on GitHub and archived on Zenodo.
 - Released under the MIT License.
 - DOI and Zenodo link provided in `README.md`.
