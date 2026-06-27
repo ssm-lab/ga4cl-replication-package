@@ -34,19 +34,11 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 - `comparison_<budget>/` — checkpoints for the random-baseline comparison experiment
 
 `03-scripts`: contains Python scripts to reproduce the training results and plots in `04-results`
-- `runner.py` — runs curriculum training and baselines; saves plots to `04-results/plots`
-- `evaluator.py` — evaluates saved agents; saves `evaluation_results.csv` to `04-results/statistics`
-- `map_visualizer.py` — renders environment grid images to `04-results/map_visualization`
-- `generate_random_config.py` — generates random environment sequence configs (pre-generated configs already in `01-configurations/random-configs/`)
-- `run_comparison.py` — runs the additional evaluation comparing the proposed curriculum against random baselines across three training budgets; saves plots and CSVs to `04-results/statistics`
-- `trainer.py`, `curriculum_builder.py`, `config_loader.py`, `agent.py`, `evaluator.py`, `plotter.py`, `env/` — supporting modules
-- `requirements.txt` — Python dependencies
 
 `04-results`: contains the plots and visualizations used in the publication
-- `map_visualization/` — PNG renders of each environment in the generated curriculum
-- `plots/` — cumulative reward figures during training (per start stage + combined grid)
-- `statistics/` — `evaluation_results.csv` and comparison experiment CSVs and plots
-
+- `map_visualization/` — visualization of each environment in the generated curriculum
+- `plots/` — cumulative reward figures during training
+- `statistics/`: evaluation results of the success rate and the mean episodic return.
 
 ## Reproduction of analysis
 
@@ -75,7 +67,6 @@ Saves the visualization of each environment to `04-results/map_visualization/`.
 python runner.py --all-stages --baseline all
 ```
 
-
 This will:
 1. Build the full curriculum (E1 → E6) ordered by environment complexity
 2. Run 5 partial curricula starting from E1, E2, E3, E4, and E5 through the target environment (E6)
@@ -93,9 +84,10 @@ python evaluator.py
 
 Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv` to `04-results/statistics/`.
 
-### Step 4 — Additional evaluation (random baseline comparison)
+### Step 4 — Additional evaluation
 
-This step compares the proposed curriculum against randomly generated sequences across three training budgets. The 30 random configs are pre-generated in `01-configurations/random-configs/`.
+This step compares the proposed curriculum against randomly generated sequences across three training budgets. 
+The 30 random configs are pre-generated in `01-configurations/random-configs/`.
 
 ```bash
 # Normal budget (50,000 steps/env)
@@ -118,7 +110,6 @@ Each run saves a `summary_cumulative_reward.png`, `evaluation_per_seed.csv`, and
 
 To regenerate plots and CSVs from already-completed training without rerunning, add `--plot-only`.
 
-**Expected runtime:** approximately 2–4 hours per budget (30 random sequences × 2 variants each).
 
 ## Reproduction of experimental data
 
