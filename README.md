@@ -21,20 +21,31 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 
 ## Content description
 
-`01-configurations`: contains the generated environment configurations
-- `environment-config.json`: the training environment configuration
-- `learning-config.json`: the RL configuration
+`01-configurations`: contains the environment and learning configuration files
+- `environment-config.json` — the generated curriculum (6 environments ordered by complexity)
+- `learning-config.json` — RL hyperparameters for the normal training budget (50,000 steps/env)
+- `learning-config-shorter.json` — RL hyperparameters for the shorter training budget (10,000 steps/env)
+- `learning-config-longer.json` — RL hyperparameters for the longer training budget (100,000 steps/env)
+- `random-configs/` — 30 pre-generated random environment sequences used in the additional evaluation
 
 `02-train-data`: contains trained agents' data produced by running the scripts in `03-scripts`
-- `<experiment>/start_stage_1/` … `start_stage_5/`: final checkpoints (`final_env_N.npy`) and periodic evaluation metrics for each curriculum run
-- `<experiment>/baseline/<label>/`: equivalent checkpoint and eval data for each baseline agent
+- `<experiment>/start_stage_1/` … `start_stage_5/` — final checkpoints (`final_env_N.npy`) for each curriculum run
+- `<experiment>/baseline/<label>/` — checkpoints for each baseline agent
+- `comparison_<budget>/` — checkpoints for the random-baseline comparison experiment
 
 `03-scripts`: contains Python scripts to reproduce the training results and plots in `04-results`
+- `runner.py` — runs curriculum training and baselines; saves plots to `04-results/plots`
+- `evaluator.py` — evaluates saved agents; saves `evaluation_results.csv` to `04-results/statistics`
+- `map_visualizer.py` — renders environment grid images to `04-results/map_visualization`
+- `generate_random_config.py` — generates random environment sequence configs (pre-generated configs already in `01-configurations/random-configs/`)
+- `run_comparison.py` — runs the additional evaluation comparing the proposed curriculum against random baselines across three training budgets; saves plots and CSVs to `04-results/statistics`
+- `trainer.py`, `curriculum_builder.py`, `config_loader.py`, `agent.py`, `evaluator.py`, `plotter.py`, `env/` — supporting modules
+- `requirements.txt` — Python dependencies
 
 `04-results`: contains the plots and visualizations used in the publication
-- `map_visualization/`: visualization of each environment in the generated curriculum
-- `plots/`: cumulative reward plots during training
-- `statistics/`: evaluation results
+- `map_visualization/` — PNG renders of each environment in the generated curriculum
+- `plots/` — cumulative reward figures during training (per start stage + combined grid)
+- `statistics/` — `evaluation_results.csv` and comparison experiment CSVs and plots
 
 
 ## Reproduction of analysis
@@ -81,6 +92,33 @@ python evaluator.py
 ```
 
 Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv` to `04-results/statistics/`.
+
+### Step 4 — Additional evaluation (random baseline comparison)
+
+This step compares the proposed curriculum against randomly generated sequences across three training budgets. The 30 random configs are pre-generated in `01-configurations/random-configs/`.
+
+```bash
+# Normal budget (50,000 steps/env)
+python run_comparison.py \
+  --learn-config ../01-configurations/learning-config.json \
+  --output ../02-train-data/comparison_normal
+
+# Shorter budget (10,000 steps/env)
+python run_comparison.py \
+  --learn-config ../01-configurations/learning-config-shorter.json \
+  --output ../02-train-data/comparison_shorter
+
+# Longer budget (100,000 steps/env)
+python run_comparison.py \
+  --learn-config ../01-configurations/learning-config-longer.json \
+  --output ../02-train-data/comparison_longer
+```
+
+Each run saves a `summary_cumulative_reward.png`, `evaluation_per_seed.csv`, and `evaluation_summary.csv` into its output directory.
+
+To regenerate plots and CSVs from already-completed training without rerunning, add `--plot-only`.
+
+**Expected runtime:** approximately 2–4 hours per budget (30 random sequences × 2 variants each).
 
 ## Reproduction of experimental data
 

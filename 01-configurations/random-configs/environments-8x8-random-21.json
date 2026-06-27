@@ -1,0 +1,130 @@
+{
+  "environments": [
+    {
+      "env_id": "env_1",
+      "desc": [
+        "SRBVBVVR",
+        "RVVRVBRV",
+        "BVVVRBVV",
+        "VVVRVBBV",
+        "VVBVRVWB",
+        "VVBVBRBV",
+        "VVVBVRBV",
+        "VVVVRVVG"
+      ],
+      "reward_schedule": [
+        0.0,
+        -0.1,
+        -1.0,
+        1.0,
+        10.0
+      ],
+      "complexity": 0.8975816887001622
+    },
+    {
+      "env_id": "env_2",
+      "desc": [
+        "SRVWBRRV",
+        "RVVVRRRV",
+        "VRRVRVRR",
+        "RRVVVVBR",
+        "RRRRRBRV",
+        "VBVRRVBV",
+        "RRBVRVRR",
+        "VRBBVRVG"
+      ],
+      "reward_schedule": [
+        0.0,
+        -0.1,
+        -1.0,
+        1.0,
+        10.0
+      ],
+      "complexity": 0.4445124361730197
+    },
+    {
+      "env_id": "env_3",
+      "desc": [
+        "SRVRRRVV",
+        "RRRRVRRR",
+        "RBVRRRRV",
+        "VRRBRRRV",
+        "RVRRRRRR",
+        "RRRRRVVR",
+        "VRRWRRRB",
+        "VRVRRVRG"
+      ],
+      "reward_schedule": [
+        0.0,
+        -0.1,
+        -1.0,
+        1.0,
+        10.0
+      ],
+      "complexity": 0.5906825284198187
+    },
+    {
+      "env_id": "env_4",
+      "desc": [
+        "SRRVVWRV",
+        "VVVVRVRV",
+        "VBRVVVRR",
+        "VVRVVVRV",
+        "RRRVRVVV",
+        "VVVVRVRV",
+        "VBVVRVVR",
+        "VRVVBBVG"
+      ],
+      "reward_schedule": [
+        0.0,
+        -0.1,
+        -1.0,
+        1.0,
+        10.0
+      ],
+      "complexity": 0.3121094031799292
+    },
+    {
+      "env_id": "env_5",
+      "desc": [
+        "SVVRBRBW",
+        "BVVVBVVR",
+        "RVVRRRBV",
+        "VBRVVVBR",
+        "BVVRVRVV",
+        "BBVRVRRB",
+        "RVBBBVVR",
+        "RVVVVVVG"
+      ],
+      "reward_schedule": [
+        0.0,
+        -0.1,
+        -1.0,
+        1.0,
+        10.0
+      ],
+      "complexity": 0.6011379823912673
+    },
+    {
+      "env_id": "env_6",
+      "desc": [
+        "SVVVRVRV",
+        "BRRRRBVB",
+        "BVBRRRBV",
+        "RVRBVVVB",
+        "VRRBBBRB",
+        "BBVWRBVR",
+        "VVRBBBVB",
+        "VBRVRVVG"
+      ],
+      "reward_schedule": [
+        0.0,
+        -0.1,
+        -1.0,
+        1.0,
+        10.0
+      ],
+      "complexity": 0.9317211258001081
+    }
+  ]
+}
