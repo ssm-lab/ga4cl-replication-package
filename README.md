@@ -2,6 +2,7 @@
 **For the paper _A Model-Driven Approach for Developing Families of Reinforcement Learning Environments_.**
 
 (Accepted for [MODELS 2026](https://conf.researchr.org/home/models-2026).)
+[![DOI](https://zenodo.org/badge/1077142603.svg)](https://doi.org/10.5281/zenodo.20978632)
 
 ## About
 Virtual training environments are software-intensive systems in which reinforcement learning (RL) agents learn, adapt, and demonstrate meaningful behavior. Virtual training environments offer a safe and cost-efficient alternative to training agents in real-world settings. However, to converge, most realistic RL problems require training in multiple, mostly similar but slightly different environments---i.e., families of environment variants. The typical development process of environment families is a labor-intensive and error-prone manual endeavor that does not scale well. To alleviate these issues, in this paper, we propose a model-driven approach for developing families of RL training environments.
