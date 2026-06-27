@@ -1,3 +1,14 @@
+"""
+Orchestrates curriculum and baseline training experiments.
+
+Runs all partial curricula (E1→E6, E2→E6, …, E5→E6) and the full-curriculum
+baseline, saves agent checkpoints to 02-train-data/, and saves cumulative-reward
+plots to 04-results/plots/.
+
+Usage (from 03-scripts/ with the virtual environment activated):
+    python runner.py --all-stages --baseline all
+"""
+
 import argparse
 import os
 
@@ -13,11 +24,13 @@ from pathlib import Path
 SEED_NUM = 1
 
 def make_experiment_name(env_config_path: str, learn_config_path: str) -> str:
+    """Return a deterministic experiment directory name derived from config file stems."""
     env_name = Path(env_config_path).stem
     learn_name = Path(learn_config_path).stem
     return f"{env_name}__{learn_name}"
 
 def parse_baseline(value: str | None) -> list[int] | str | None:
+    """Parse --baseline argument: None, 'all', or comma-separated int indices."""
     if value is None:
         return None
     if value == "all":
@@ -25,6 +38,7 @@ def parse_baseline(value: str | None) -> list[int] | str | None:
     return [int(i) for i in value.split(",")]
 
 def parse_args():
+    """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
         description="Run curriculum learning and baseline experiments across multiple seeds."
     )
@@ -87,6 +101,7 @@ def setup_experiment(args, env_cfg, learn_cfg):
     return full_curriculum, target_spec, experiment_train_dir, experiment_output_dir
 
 def build_baseline_specs_by_stage(full_curriculum, args, n_stages):
+    """Build a {start_stage: {label: EnvSpec}} mapping for all requested start stages."""
     start_stages = list(range(1, n_stages)) if args.all_stages else [args.start_stage]
     baseline_specs_by_stage = {}
 
@@ -164,6 +179,7 @@ def run_all_curricula(full_curriculum, target_spec, env_cfg, learn_cfg, args, ex
 
 
 def main():
+    """Entry point: run all curricula and baselines, then save plots."""
     args = parse_args()
     args.baseline_indices = parse_baseline(args.baseline)
     os.makedirs(args.train_data, exist_ok=True)
@@ -199,6 +215,7 @@ def main():
 
 
 def set_global_seed(seed: int):
+    """Set Python and NumPy random seeds for reproducibility."""
     random.seed(seed)
     np.random.seed(seed)
 

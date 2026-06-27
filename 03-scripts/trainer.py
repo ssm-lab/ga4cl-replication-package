@@ -52,6 +52,7 @@ def make_env(spec: EnvSpec, seed: int | None = None):
 # Create DQN agent
 # ---------------------------------------------------------------------------
 def create_agent(rl_cfg, env, seed):
+    """Instantiate a QLearningAgent from the *rl* section of the learning config."""
     return QLearningAgent(
         n_states=env.observation_space.n,
         n_actions=env.action_space.n,
@@ -168,6 +169,12 @@ def train_on_env(
 # Curriculum training: loop over envs
 # ---------------------------------------------------------------------------
 def run_curriculum(curriculum, eval_spec, learn_cfg, output_dir):
+    """
+    Train a single agent sequentially on every environment in *curriculum*.
+
+    The agent's Q-table is carried forward between stages; only epsilon is reset.
+    Returns the trained agent and a list of TrainResult, one per stage.
+    """
     rl_cfg = learn_cfg["rl"]
     seed = learn_cfg["curriculum"].get("seed", 42)
     checkpoint_freq = learn_cfg["curriculum"].get("checkpoint_frequency", 2000)

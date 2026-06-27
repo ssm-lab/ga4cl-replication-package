@@ -1,3 +1,12 @@
+"""
+Render PNG visualizations of each environment in the curriculum.
+
+Saves one image per environment to 04-results/map_visualization/.
+
+Usage (from 03-scripts/ with the virtual environment activated):
+    python map_visualizer.py [path/to/environment-config.json]
+"""
+
 import json
 import gymnasium as gym
 import matplotlib.pyplot as plt
@@ -7,6 +16,11 @@ import os
 
 
 def show_env(desc, title):
+    """
+    Render *desc* as an RGB frame and save it to *title*.png.
+
+    Also prints the map layout and fire-cell density to stdout.
+    """
     environment = gym.make(
         "BurningForest-v0",
         render_mode="rgb_array",

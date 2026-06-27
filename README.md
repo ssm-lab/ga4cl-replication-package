@@ -9,24 +9,20 @@ To obtain the family of environments, we develop an approach and prototype tool.
 We demonstrate the soundness of our approach in a wildfire mitigation scenario and curriculum learning---a particular learning paradigm that relies on environment families.
 
 ## Table of contents
-- Content description
-
-- Reproduction of analysis
-
-- Reproduction of experimental data
-
-- Experiment settings
-
-- Results
+- [Content description](#content-description)
+- [Reproduction of analysis](#reproduction-of-analysis)
+- [Reproduction of experimental data](#reproduction-of-experimental-data)
+- [Experiment settings](#experiment-settings)
+- [Results](#results)
 
 ## Content description
 
 `01-configurations`: contains the environment and learning configuration files
-- `environment-config.json` — the generated curriculum (6 environments ordered by complexity)
+- `environment-config.json` — the generated curriculum
 - `learning-config.json` — RL hyperparameters for the normal training budget (50,000 steps/env)
 - `learning-config-shorter.json` — RL hyperparameters for the shorter training budget (10,000 steps/env)
 - `learning-config-longer.json` — RL hyperparameters for the longer training budget (100,000 steps/env)
-- `random-configs/` — 30 pre-generated random environment sequences used in the additional evaluation
+- `random-configs/` — 30 generated random environment sequences used in the additional evaluation
 
 `02-train-data`: contains trained agents' data produced by running the scripts in `03-scripts`
 - `<experiment>/start_stage_1/` … `start_stage_5/` — final checkpoints (`final_env_N.npy`) for each curriculum run
@@ -34,18 +30,12 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 - `comparison_<budget>/` — checkpoints for the random-baseline comparison experiment
 
 `03-scripts`: contains Python scripts to reproduce the training results and plots in `04-results`
-- `runner.py` — runs curriculum training and baselines; saves plots to `04-results/plots`
-- `evaluator.py` — evaluates saved agents; saves `evaluation_results.csv` to `04-results/statistics`
-- `map_visualizer.py` — renders environment grid images to `04-results/map_visualization`
-- `generate_random_config.py` — generates random environment sequence configs (pre-generated configs already in `01-configurations/random-configs/`)
-- `run_comparison.py` — runs the additional evaluation comparing the proposed curriculum against random baselines across three training budgets; saves plots and CSVs to `04-results/statistics`
-- `trainer.py`, `curriculum_builder.py`, `config_loader.py`, `agent.py`, `evaluator.py`, `plotter.py`, `env/` — supporting modules
-- `requirements.txt` — Python dependencies
+
 
 `04-results`: contains the plots and visualizations used in the publication
-- `map_visualization/` — PNG renders of each environment in the generated curriculum
+- `map_visualization/` — visualization of each environment in the generated curriculum
 - `plots/` — cumulative reward figures during training (per start stage + combined grid)
-- `statistics/` — `evaluation_results.csv` and comparison experiment CSVs and plots
+- `statistics/` — evaluation results
 
 
 ## Reproduction of analysis
@@ -93,7 +83,7 @@ python evaluator.py
 
 Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv` to `04-results/statistics/`.
 
-### Step 4 — Additional evaluation (random baseline comparison)
+### Step 4 — Additional evaluation
 
 This step compares the proposed curriculum against randomly generated sequences across three training budgets. The 30 random configs are pre-generated in `01-configurations/random-configs/`.
 
@@ -118,7 +108,6 @@ Each run saves a `summary_cumulative_reward.png`, `evaluation_per_seed.csv`, and
 
 To regenerate plots and CSVs from already-completed training without rerunning, add `--plot-only`.
 
-**Expected runtime:** approximately 2–4 hours per budget (30 random sequences × 2 variants each).
 
 ## Reproduction of experimental data
 

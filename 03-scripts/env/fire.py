@@ -1,3 +1,12 @@
+"""
+BurningForest Gymnasium environment for wildfire-mitigation curriculum learning.
+
+The agent (a firetruck) navigates an 8×8 grid from Start (S) to Goal (G),
+collecting water (W) and avoiding burning tiles (B).  Tile types and their
+reward indices are: S/R (road) = 0, V (vegetation) = 1, B (burning) = 2,
+W (water) = 3, G (goal) = 4.
+"""
+
 from __future__ import annotations
 
 from contextlib import closing
@@ -41,8 +50,8 @@ MAPS = {
 # }
 
 
-# DFS to check that it's a valid path.
 def is_valid(board: list[list[str]], max_size: int) -> bool:
+    """Return True if there is a path from S(0,0) to G(n-1,n-1) avoiding B tiles (DFS)."""
     frontier, discovered = [], set()
     frontier.append((0, 0))
     while frontier:
@@ -105,6 +114,15 @@ def generate_random_map(
 
 
 class BurningForest(Env):
+    """
+    Wildfire-mitigation grid-world environment.
+
+    The agent navigates an n×n grid from S(0,0) to G(n-1,n-1).
+    Collecting a water tile (W) for the first time yields a bonus reward;
+    stepping on a burning tile (B) terminates the episode with a penalty.
+    Observation space is Discrete(n²) when no water tiles are present,
+    or Discrete(2·n²) to encode whether water has been collected.
+    """
     metadata = {
         "render_modes": ["human", "ansi", "rgb_array"],
         "render_fps": 4,
@@ -243,12 +261,14 @@ class BurningForest(Env):
     #         "goal": self._goal_location.astype(np.float32),
     #     }
     def _get_obs(self):
+        """Return the current observation, encoding water-collection state when applicable."""
         if len(self._water_positions) > 0:
             water_flag = 1 if self._collected_water else 0
             return int(self.s + self._n_positions * water_flag)
         return int(self.s)
 
     def step(self, a):
+        """Execute action *a* and return (obs, reward, terminated, truncated, info)."""
         a = int(a)
         transitions = self.P[self.s][a]
         i = categorical_sample([t[0] for t in transitions], self.np_random)
@@ -276,6 +296,7 @@ class BurningForest(Env):
         seed: int | None = None,
         options: dict | None = None,
     ):
+        """Reset the environment to the start state and return (obs, info)."""
         super().reset(seed=seed)
         self.s = categorical_sample(self.initial_state_distrib, self.np_random)
         self.lastaction = None
@@ -287,6 +308,7 @@ class BurningForest(Env):
         # return int(self.s), {"prob": 1}
 
     def render(self):
+        """Render the environment according to render_mode ('human', 'ansi', or 'rgb_array')."""
         if self.render_mode is None:
             assert self.spec is not None
             gym.logger.warn(
@@ -431,6 +453,7 @@ class BurningForest(Env):
             return outfile.getvalue()
 
     def close(self):
+        """Shut down the pygame window if it was opened."""
         if self.window_surface is not None:
             import pygame
 

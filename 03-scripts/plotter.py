@@ -1,3 +1,11 @@
+"""
+Plotting utilities for cumulative-reward training curves.
+
+Produces per-start-stage individual PNGs, a combined 2×3 grid PNG, and a
+standalone all-curricula summary PNG.  All figures share the same Y-axis
+ceiling (Y_MAX) so panels are directly comparable.
+"""
+
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -36,9 +44,11 @@ BASELINE_COLORS   = ["tab:brown", "tab:pink", "tab:gray", "tab:olive", "tab:cyan
 # ]
 
 def _curriculum_color(start_stage: int) -> str:
+    """Return a consistent color for the curriculum line of a given start stage."""
     return CURRICULUM_COLORS[(start_stage - 1) % len(CURRICULUM_COLORS)]
 
 def _baseline_color(label: str, all_labels: list[str]) -> str:
+    """Return a consistent color for a baseline line identified by *label*."""
     idx = all_labels.index(label)
     return BASELINE_COLORS[idx % len(BASELINE_COLORS)]
 

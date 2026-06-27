@@ -1,3 +1,7 @@
+"""
+Builds the curriculum artifact (ordered list of environments) from raw config dicts.
+"""
+
 from config_loader import EnvSpec
 def build_curriculum(env_cfg: dict, learn_cfg: dict, ordered: bool = True) -> list[dict]:
     """
@@ -40,6 +44,7 @@ def build_curriculum(env_cfg: dict, learn_cfg: dict, ordered: bool = True) -> li
 
 
 def get_target_spec(curriculum: list[dict]) -> EnvSpec:
+    """Return the EnvSpec for the final (target) environment in the curriculum."""
     return curriculum[-1]["spec"]
 
 
@@ -47,6 +52,11 @@ def resolve_baseline_specs(
     curriculum: list[dict],
     env_indices: list[int] | str | None = None,
 ) -> dict[str, EnvSpec]:
+    """
+    Return a label→EnvSpec mapping for the requested baseline environments.
+
+    env_indices=None  → target only; "all" → every env; list[int] → those indices.
+    """
     if env_indices is None:
         target = curriculum[-1]["spec"]
         return {"Baseline (target)": target}

@@ -1,3 +1,13 @@
+"""
+Evaluate saved agent checkpoints from 02-train-data on the target environment.
+
+Reads final_*.npy checkpoints produced by runner.py and writes
+evaluation_results.csv to 04-results/statistics/.
+
+Usage (from 03-scripts/ with the virtual environment activated):
+    python evaluator.py
+"""
+
 import csv
 import os
 import argparse
@@ -12,6 +22,7 @@ from trainer import make_env, evaluate_agent
 seed = 42
 
 def parse_args():
+    """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
         description="Evaluate saved policies from 02-train-data without retraining."
     )
@@ -26,6 +37,7 @@ def parse_args():
 
 
 def load_agent(path: str, env, seed: int) -> QLearningAgent:
+    """Load a saved Q-table from *path* into a new QLearningAgent."""
     agent = QLearningAgent(
         n_states=env.observation_space.n,
         n_actions=env.action_space.n,
@@ -36,6 +48,7 @@ def load_agent(path: str, env, seed: int) -> QLearningAgent:
     return agent
 
 def find_curriculum_stage_policies(stage_dir: str) -> list[tuple[int, str]]:
+    """Return (env_index, path) pairs for all final_*.npy files under stage_dir."""
     results = []
     for env_dir in sorted(Path(stage_dir).iterdir()):
         parts = env_dir.name.split("_")
@@ -48,6 +61,7 @@ def find_curriculum_stage_policies(stage_dir: str) -> list[tuple[int, str]]:
     return sorted(results, key=lambda x: x[0])
 
 def find_baseline_policies(baseline_dir: str) -> list[tuple[str, str]]:
+    """Return (label, path) pairs for all baseline final_*.npy files under baseline_dir."""
     results = []
     for b_dir in sorted(Path(baseline_dir).iterdir()):
         npy_files = list(b_dir.glob("final_*.npy"))
@@ -55,8 +69,8 @@ def find_baseline_policies(baseline_dir: str) -> list[tuple[str, str]]:
             results.append((b_dir.name, str(npy_files[0])))
     return results
 
-# evaluate them for same episode, see their success.
 def evaluate(seed_dir, target_spec, seed, n_eval_episodes):
+    """Evaluate all curriculum and baseline policies in seed_dir on the target environment."""
     target_env = make_env(target_spec, seed=seed + 999)
 
     # curriculum
@@ -92,6 +106,7 @@ def evaluate(seed_dir, target_spec, seed, n_eval_episodes):
 def evaluate_curricula(
     stage_dirs, target_env, seed, n_eval_episodes
 ) -> dict[int, dict]:
+    """Evaluate the final-stage policy for each partial curriculum; returns {start_stage: result}."""
     all_curriculum = {}
     for stage_dir in stage_dirs:
         start_stage = int(stage_dir.name.split("_")[2])
@@ -115,6 +130,7 @@ def evaluate_curricula(
 def evaluate_baselines(
     results_dir, target_env, seed, n_eval_episodes
 ) -> list[dict]:
+    """Evaluate all baseline policies found in results_dir/baseline/ on the target environment."""
     all_baseline = []
     baseline_dir = str(Path(results_dir) / "baseline")
     for i, (_, policy_path) in enumerate(find_baseline_policies(baseline_dir), start=1):
@@ -160,6 +176,7 @@ def save_evaluation_csv(
 
 
 def main():
+    """Entry point: evaluate all saved agents and write evaluation_results.csv."""
     args = parse_args()
     env_cfg, learn_cfg = load_configs(args.env_config, args.learn_config)
 
