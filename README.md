@@ -1,7 +1,8 @@
 # Replication package
 **For the paper _A Model-Driven Approach for Developing Families of Reinforcement Learning Environments_.**
 
-(Accepted for [MODELS 2026](https://conf.researchr.org/home/models-2026).)
+Accepted for [MODELS 2026](https://conf.researchr.org/home/models-2026).
+
 [![DOI](https://zenodo.org/badge/1077142603.svg)](https://doi.org/10.5281/zenodo.20978632)
 
 ## About
