@@ -39,6 +39,10 @@ We demonstrate the soundness of our approach in a wildfire mitigation scenario a
 - `statistics/`: evaluation results of the success rate and the mean episodic return.
 
 
+Here's the revised version:
+
+---
+
 ## Reproduction of analysis
 
 ### Requirements
@@ -52,6 +56,19 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Step 0 — Configuration files
+
+The experiments are controlled by two JSON files in `01-configurations/`:
+
+- **`environment-config.json`**: the family of environments. To apply the pipeline to a different environment family, replace this file with one following the same schema (a top-level `"environments"` list where each entry has `env_id`, `desc`, `reward_schedule`, and `complexity`).
+- **`learning-config.json`**: RL hyperparameters and training budget. Three variants are provided:
+
+| File | Steps per environment |
+|---|---|
+| `learning-config.json` | 50,000 (default) |
+| `learning-config-shorter.json` | 10,000 |
+| `learning-config-longer.json` | 100,000 |
+
 ### Step 1 — Generate map visualizations
 
 ```bash
@@ -60,12 +77,16 @@ python map_visualizer.py
 
 Saves the visualization of each environment to `04-results/map_visualization/`.
 
+> **To visualize a different environment config:**
+> ```bash
+> python map_visualizer.py ../01-configurations/your-environment-config.json
+> ```
+
 ### Step 2 — Training
 
 ```bash
 python runner.py --all-stages --baseline all
 ```
-
 This will:
 1. Build the full curriculum (E1 → E6) ordered by environment complexity
 2. Run 5 partial curricula starting from E1, E2, E3, E4, and E5 through the target environment (E6)
@@ -73,6 +94,16 @@ This will:
 4. Save agent checkpoints to `02-train-data/`
 5. Save the plots to `04-results/plots/`.
 
+> **To run a single partial curriculum**, use `--start-stage N` (where N is 1–5) instead of `--all-stages`. For example, to start from environment 3 (E3 → E6):
+> ```bash
+> python runner.py --start-stage 3 --baseline all
+> ```
+> **To change the training budget**, swap `--learn-config`:
+> ```bash
+> python runner.py --all-stages --baseline all \
+>   --learn-config ../01-configurations/learning-config-shorter.json
+> ```
+> **To skip baselines**, omit `--baseline all`. To train only the target environment baseline (E6), use `--baseline 5`.
 
 
 ### Step 3 — Evaluation
@@ -81,33 +112,37 @@ This will:
 python evaluator.py
 ```
 
-Reads saved checkpoints from `02-train-data/` and saves `evaluation_results.csv` to `04-results/statistics/`.
+Reads checkpoints from `02-train-data/` and writes `evaluation_results.csv` to `04-results/statistics/`.
 
-### Step 4 — Additional evaluation
+> **`--n-eval-episodes`** (default: `3000`): controls how many episodes are used for the evaluation.
+> 
+> **`--learn-config`** must match the config used in Step 2.
 
-This step compares the proposed curriculum against randomly generated sequences across three training budgets. 
-The 30 random configs are pre-generated in `01-configurations/random-configs/`.
+
+### Step 4 — Additional evaluation (random baseline comparison)
 
 ```bash
-# Normal budget (50,000 steps/env)
+# Normal budget
 python run_comparison.py \
   --learn-config ../01-configurations/learning-config.json \
   --output ../02-train-data/comparison_normal
 
-# Shorter budget (10,000 steps/env)
+# Shorter budget
 python run_comparison.py \
   --learn-config ../01-configurations/learning-config-shorter.json \
   --output ../02-train-data/comparison_shorter
 
-# Longer budget (100,000 steps/env)
+# Longer budget
 python run_comparison.py \
   --learn-config ../01-configurations/learning-config-longer.json \
   --output ../02-train-data/comparison_longer
 ```
 
-Each run saves a `summary_cumulative_reward.png`, `evaluation_per_seed.csv`, and `evaluation_summary.csv` into its output directory.
+Each run saves `summary_cumulative_reward.png`, `evaluation_per_seed.csv`, and `evaluation_summary.csv` to its output directory.
 
-To regenerate plots and CSVs from already-completed training without rerunning, add `--plot-only`.
+> **`--plot-only`**: regenerates plots and CSVs from already completed training without rerunning.
+
+> **`--seed`** (default: `42`): global random seed for the curriculum and baseline runs.
 
 
 ## Reproduction of experimental data
